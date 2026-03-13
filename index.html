@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ishi Turns 6 🎀 Preview</title>
+<title>Ishi Turns 6 🎀</title>
 
 <style>
 
@@ -18,7 +18,7 @@ min-height:100vh;
 overflow-x:hidden;
 }
 
-/* hearts */
+/* floating hearts */
 
 .heart{
 position:fixed;
@@ -32,10 +32,10 @@ font-size:20px;
 100%{transform:translateY(-10vh);opacity:0}
 }
 
-/* card */
+/* glass card */
 
 .container{
-background:rgba(255,255,255,0.8);
+background:rgba(255,255,255,0.85);
 backdrop-filter:blur(10px);
 padding:40px;
 border-radius:25px;
@@ -46,7 +46,10 @@ box-shadow:0 20px 50px rgba(0,0,0,0.15);
 
 h1{
 color:#ff3f8e;
+font-size:38px;
 }
+
+/* buttons */
 
 button{
 background:#ff3f8e;
@@ -93,6 +96,8 @@ margin-top:10px;
 font-size:18px;
 color:#ff1493;
 }
+
+/* arrows */
 
 .arrow{
 position:absolute;
@@ -148,8 +153,6 @@ color:#ff1493;
 
 <div class="gift">🎁</div>
 
-<div>🎉 Preview Mode - Countdown Finished</div>
-
 <button id="giftBtn">Open Surprise Gift</button>
 <button id="secretBtn" style="display:none">Open Secret Message 💌</button>
 
@@ -157,13 +160,16 @@ color:#ff1493;
 
 <div class="secret" id="secretMsg">
 Happy 6th Birthday Ishi! 🎀  
-You are the sweetest girl in the world! 💖
+You are the sweetest girl in the world! 💖  
+May your life always be full of happiness and magic ✨
 </div>
 
 <div class="slideshow" id="slideshow">
 
 <div class="arrow left" onclick="prevSlide()">❮</div>
 <div class="arrow right" onclick="nextSlide()">❯</div>
+
+<!-- 16 PHOTOS -->
 
 <div class="slide">
 <img src="photo1.jpg">
