@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ishi Turns 6 🎀</title>
+<title>Ishi Turns 6 🎀 Preview</title>
 
 <style>
 
 body{
 margin:0;
-font-family:Arial, sans-serif;
+font-family:Arial;
 background:linear-gradient(135deg,#ffc6e0,#ffdff0,#ffeef7);
 display:flex;
 align-items:center;
@@ -18,7 +18,7 @@ min-height:100vh;
 overflow-x:hidden;
 }
 
-/* floating hearts */
+/* hearts */
 
 .heart{
 position:fixed;
@@ -32,7 +32,7 @@ font-size:20px;
 100%{transform:translateY(-10vh);opacity:0}
 }
 
-/* glass card */
+/* card */
 
 .container{
 background:rgba(255,255,255,0.8);
@@ -46,16 +46,7 @@ box-shadow:0 20px 50px rgba(0,0,0,0.15);
 
 h1{
 color:#ff3f8e;
-font-size:38px;
 }
-
-#timer{
-font-size:28px;
-margin:20px 0;
-color:#ff3f8e;
-}
-
-/* buttons */
 
 button{
 background:#ff3f8e;
@@ -66,10 +57,6 @@ font-size:18px;
 border-radius:30px;
 cursor:pointer;
 margin:10px;
-}
-
-button:disabled{
-background:#ccc;
 }
 
 /* gift */
@@ -106,8 +93,6 @@ margin-top:10px;
 font-size:18px;
 color:#ff1493;
 }
-
-/* arrows */
 
 .arrow{
 position:absolute;
@@ -163,25 +148,22 @@ color:#ff1493;
 
 <div class="gift">🎁</div>
 
-<div id="timer"></div>
+<div>🎉 Preview Mode - Countdown Finished</div>
 
-<button id="giftBtn" disabled>Open Surprise Gift</button>
+<button id="giftBtn">Open Surprise Gift</button>
 <button id="secretBtn" style="display:none">Open Secret Message 💌</button>
 
 <div id="cake"></div>
 
 <div class="secret" id="secretMsg">
 Happy 6th Birthday Ishi! 🎀  
-You are the sweetest girl in the world!  
-May your life always be full of happiness, magic and smiles 💖
+You are the sweetest girl in the world! 💖
 </div>
 
 <div class="slideshow" id="slideshow">
 
 <div class="arrow left" onclick="prevSlide()">❮</div>
 <div class="arrow right" onclick="nextSlide()">❯</div>
-
-<!-- 16 PHOTOS -->
 
 <div class="slide">
 <img src="photo1.jpg">
@@ -269,7 +251,7 @@ May your life always be full of happiness, magic and smiles 💖
 
 <script>
 
-/* floating hearts */
+/* hearts */
 
 setInterval(()=>{
 let heart=document.createElement("div")
@@ -280,36 +262,9 @@ document.body.appendChild(heart)
 setTimeout(()=>heart.remove(),8000)
 },500)
 
-/* countdown */
-
-const birthday=new Date("March 22 2026 00:00:00").getTime()
-const btn=document.getElementById("giftBtn")
-
-setInterval(()=>{
-
-let now=new Date().getTime()
-let distance=birthday-now
-
-let d=Math.floor(distance/(1000*60*60*24))
-let h=Math.floor((distance%(1000*60*60*24))/(1000*60*60))
-let m=Math.floor((distance%(1000*60*60))/(1000*60))
-let s=Math.floor((distance%(1000*60))/1000)
-
-if(distance>0){
-document.getElementById("timer").innerHTML=
-d+"d "+h+"h "+m+"m "+s+"s"
-}
-
-if(distance<0){
-document.getElementById("timer").innerHTML="🎉 It's Your Birthday!"
-btn.disabled=false
-}
-
-},1000)
-
 /* open gift */
 
-btn.onclick=()=>{
+document.getElementById("giftBtn").onclick=()=>{
 
 document.getElementById("slideshow").style.display="block"
 document.getElementById("cake").innerHTML="🎂 Click cake to blow candles"
@@ -328,11 +283,6 @@ setTimeout(()=>conf.remove(),3000)
 
 }
 
-/* music */
-
-let audio=new Audio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3")
-audio.play()
-
 }
 
 /* cake */
@@ -343,7 +293,7 @@ this.innerHTML="🧁 Candles blown! Make a wish ✨"
 
 }
 
-/* secret message */
+/* secret */
 
 document.getElementById("secretBtn").onclick=function(){
 
