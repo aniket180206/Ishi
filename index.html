@@ -3,180 +3,385 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ishii Birthday Countdown 🎀</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&family=Pacifico&display=swap" rel="stylesheet">
+<title>Ishi Turns 6 🎀</title>
+
 <style>
-*{box-sizing:border-box}
+
 body{
- margin:0;
- font-family:'Poppins',sans-serif;
- background:linear-gradient(135deg,#ffc1da,#ffd9ec,#ffe6f3);
- height:100vh;
- display:flex;
- align-items:center;
- justify-content:center;
- overflow:hidden;
+margin:0;
+font-family:Arial, sans-serif;
+background:linear-gradient(135deg,#ffc6e0,#ffdff0,#ffeef7);
+display:flex;
+align-items:center;
+justify-content:center;
+min-height:100vh;
+overflow-x:hidden;
 }
 
 /* floating hearts */
+
 .heart{
- position:absolute;
- color:#ff6fa5;
- font-size:20px;
- animation:float 8s linear infinite;
- opacity:.7;
-}
-@keyframes float{
- 0%{transform:translateY(100vh) scale(.5);opacity:0}
- 50%{opacity:1}
- 100%{transform:translateY(-10vh) scale(1.2);opacity:0}
+position:fixed;
+animation:float 8s linear infinite;
+font-size:20px;
 }
 
+@keyframes float{
+0%{transform:translateY(100vh);opacity:0}
+50%{opacity:1}
+100%{transform:translateY(-10vh);opacity:0}
+}
+
+/* glass card */
+
 .container{
- text-align:center;
- background:rgba(255,255,255,0.85);
- backdrop-filter:blur(10px);
- padding:50px 40px;
- border-radius:25px;
- box-shadow:0 15px 40px rgba(0,0,0,0.15);
- max-width:520px;
+background:rgba(255,255,255,0.8);
+backdrop-filter:blur(10px);
+padding:40px;
+border-radius:25px;
+max-width:900px;
+text-align:center;
+box-shadow:0 20px 50px rgba(0,0,0,0.15);
 }
 
 h1{
- font-family:'Pacifico',cursive;
- color:#ff4d94;
- font-size:36px;
- margin-bottom:10px;
-}
-
-.subtitle{
- color:#ff6fa5;
- margin-bottom:25px;
+color:#ff3f8e;
+font-size:38px;
 }
 
 #timer{
- font-size:32px;
- font-weight:600;
- color:#ff4d94;
- margin:25px 0;
+font-size:28px;
+margin:20px 0;
+color:#ff3f8e;
 }
+
+/* buttons */
 
 button{
- background:linear-gradient(135deg,#ff69b4,#ff4d94);
- border:none;
- color:white;
- padding:15px 28px;
- font-size:18px;
- border-radius:40px;
- cursor:pointer;
- transition:.3s;
- box-shadow:0 8px 20px rgba(255,77,148,0.4);
+background:#ff3f8e;
+color:white;
+border:none;
+padding:15px 25px;
+font-size:18px;
+border-radius:30px;
+cursor:pointer;
+margin:10px;
 }
-
-button:hover{transform:scale(1.05)}
 
 button:disabled{
- background:#d9d9d9;
- box-shadow:none;
- cursor:not-allowed;
+background:#ccc;
 }
 
-#message{
- margin-top:30px;
- font-size:24px;
- color:#ff1493;
- font-weight:500;
+/* gift */
+
+.gift{
+font-size:70px;
+animation:bounce 1.2s infinite alternate;
 }
+
+@keyframes bounce{
+from{transform:translateY(0)}
+to{transform:translateY(-12px)}
+}
+
+/* slideshow */
+
+.slideshow{
+display:none;
+margin-top:25px;
+position:relative;
+}
+
+.slide{
+display:none;
+}
+
+.slide img{
+width:100%;
+border-radius:20px;
+}
+
+.caption{
+margin-top:10px;
+font-size:18px;
+color:#ff1493;
+}
+
+/* arrows */
+
+.arrow{
+position:absolute;
+top:45%;
+font-size:40px;
+color:white;
+background:#ff3f8e;
+padding:10px 15px;
+cursor:pointer;
+border-radius:50%;
+}
+
+.left{left:-20px}
+.right{right:-20px}
+
+/* cake */
+
+#cake{
+font-size:80px;
+margin-top:20px;
+cursor:pointer;
+}
+
+/* confetti */
 
 .confetti{
- position:fixed;
- width:8px;
- height:8px;
- background:red;
- top:-10px;
- animation:fall 3s linear forwards;
+position:fixed;
+width:10px;
+height:10px;
+top:-10px;
+animation:fall 3s linear forwards;
 }
 
 @keyframes fall{
- to{transform:translateY(110vh) rotate(720deg)}
+to{transform:translateY(110vh) rotate(720deg)}
 }
 
-.footer{
- margin-top:25px;
- font-size:13px;
- color:#999;
+.secret{
+display:none;
+margin-top:20px;
+font-size:22px;
+color:#ff1493;
 }
+
 </style>
 </head>
+
 <body>
 
 <div class="container">
 
-<h1>Ishii's Birthday 🎀</h1>
-<div class="subtitle">A special surprise is waiting...</div>
+<h1>Ishi Turns 6 🎂</h1>
+
+<div class="gift">🎁</div>
 
 <div id="timer"></div>
 
-<button id="giftBtn" disabled>🎁 Open Surprise Gift</button>
+<button id="giftBtn" disabled>Open Surprise Gift</button>
+<button id="secretBtn" style="display:none">Open Secret Message 💌</button>
 
-<div id="message"></div>
+<div id="cake"></div>
 
-<div class="footer">Made with 💖 just for Ishii</div>
+<div class="secret" id="secretMsg">
+Happy 6th Birthday Ishi! 🎀  
+You are the sweetest girl in the world!  
+May your life always be full of happiness, magic and smiles 💖
+</div>
+
+<div class="slideshow" id="slideshow">
+
+<div class="arrow left" onclick="prevSlide()">❮</div>
+<div class="arrow right" onclick="nextSlide()">❯</div>
+
+<!-- 16 PHOTOS -->
+
+<div class="slide">
+<img src="photo1.jpg">
+<div class="caption">Your beautiful smile lights up the world ✨</div>
+</div>
+
+<div class="slide">
+<img src="photo2.jpg">
+<div class="caption">A little princess with a big heart 💖</div>
+</div>
+
+<div class="slide">
+<img src="photo3.jpg">
+<div class="caption">Every moment with you is magical 🌸</div>
+</div>
+
+<div class="slide">
+<img src="photo4.jpg">
+<div class="caption">Your laughter is pure happiness 🎈</div>
+</div>
+
+<div class="slide">
+<img src="photo5.jpg">
+<div class="caption">You make every day brighter ☀️</div>
+</div>
+
+<div class="slide">
+<img src="photo6.jpg">
+<div class="caption">Sweet, kind and wonderful 🌷</div>
+</div>
+
+<div class="slide">
+<img src="photo7.jpg">
+<div class="caption">A shining little star ⭐</div>
+</div>
+
+<div class="slide">
+<img src="photo8.jpg">
+<div class="caption">Joy and love everywhere you go 💕</div>
+</div>
+
+<div class="slide">
+<img src="photo9.jpg">
+<div class="caption">So many beautiful memories 📸</div>
+</div>
+
+<div class="slide">
+<img src="photo10.jpg">
+<div class="caption">Your smile is priceless 💎</div>
+</div>
+
+<div class="slide">
+<img src="photo11.jpg">
+<div class="caption">The cutest little angel 👼</div>
+</div>
+
+<div class="slide">
+<img src="photo12.jpg">
+<div class="caption">Your happiness is magical 🌈</div>
+</div>
+
+<div class="slide">
+<img src="photo13.jpg">
+<div class="caption">Every photo tells a lovely story 💗</div>
+</div>
+
+<div class="slide">
+<img src="photo14.jpg">
+<div class="caption">Bright like a beautiful flower 🌺</div>
+</div>
+
+<div class="slide">
+<img src="photo15.jpg">
+<div class="caption">Little moments, big memories 🎀</div>
+</div>
+
+<div class="slide">
+<img src="photo16.jpg">
+<div class="caption">Happy 6th Birthday Ishi 🎂</div>
+</div>
+
+</div>
 
 </div>
 
 <script>
 
-/* floating hearts generator */
+/* floating hearts */
+
 setInterval(()=>{
- const heart=document.createElement("div")
- heart.className="heart"
- heart.innerHTML="💗"
- heart.style.left=Math.random()*100+"vw"
- heart.style.fontSize=(16+Math.random()*20)+"px"
- document.body.appendChild(heart)
- setTimeout(()=>heart.remove(),8000)
+let heart=document.createElement("div")
+heart.className="heart"
+heart.innerHTML="💖"
+heart.style.left=Math.random()*100+"vw"
+document.body.appendChild(heart)
+setTimeout(()=>heart.remove(),8000)
 },500)
 
+/* countdown */
 
-const birthday=new Date("March 22, 2026 00:00:00").getTime()
+const birthday=new Date("March 22 2026 00:00:00").getTime()
 const btn=document.getElementById("giftBtn")
-const message=document.getElementById("message")
 
-const timer=setInterval(()=>{
+setInterval(()=>{
 
- const now=new Date().getTime()
- const distance=birthday-now
+let now=new Date().getTime()
+let distance=birthday-now
 
- const days=Math.floor(distance/(1000*60*60*24))
- const hours=Math.floor((distance%(1000*60*60*24))/(1000*60*60))
- const minutes=Math.floor((distance%(1000*60*60))/(1000*60))
- const seconds=Math.floor((distance%(1000*60))/1000)
+let d=Math.floor(distance/(1000*60*60*24))
+let h=Math.floor((distance%(1000*60*60*24))/(1000*60*60))
+let m=Math.floor((distance%(1000*60*60))/(1000*60))
+let s=Math.floor((distance%(1000*60))/1000)
 
- document.getElementById("timer").innerHTML=
- `${days}d ${hours}h ${minutes}m ${seconds}s`
+if(distance>0){
+document.getElementById("timer").innerHTML=
+d+"d "+h+"h "+m+"m "+s+"s"
+}
 
- if(distance<0){
- clearInterval(timer)
- document.getElementById("timer").innerHTML="🎉 It's Ishii's Birthday!"
- btn.disabled=false
- }
+if(distance<0){
+document.getElementById("timer").innerHTML="🎉 It's Your Birthday!"
+btn.disabled=false
+}
 
 },1000)
 
+/* open gift */
+
 btn.onclick=()=>{
 
- message.innerHTML="🎂 Happy Birthday Ishii! 💖 May your day be filled with love, smiles, and beautiful memories!"
+document.getElementById("slideshow").style.display="block"
+document.getElementById("cake").innerHTML="🎂 Click cake to blow candles"
+document.getElementById("secretBtn").style.display="inline-block"
 
- for(let i=0;i<120;i++){
-  const conf=document.createElement("div")
-  conf.className="confetti"
-  conf.style.left=Math.random()*100+"vw"
-  conf.style.background=`hsl(${Math.random()*360},70%,60%)`
-  conf.style.animationDuration=(2+Math.random()*2)+"s"
-  document.body.appendChild(conf)
-  setTimeout(()=>conf.remove(),3000)
- }
+for(let i=0;i<150;i++){
+
+let conf=document.createElement("div")
+conf.className="confetti"
+conf.style.left=Math.random()*100+"vw"
+conf.style.background=`hsl(${Math.random()*360},70%,60%)`
+
+document.body.appendChild(conf)
+
+setTimeout(()=>conf.remove(),3000)
+
+}
+
+/* music */
+
+let audio=new Audio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3")
+audio.play()
+
+}
+
+/* cake */
+
+document.getElementById("cake").onclick=function(){
+
+this.innerHTML="🧁 Candles blown! Make a wish ✨"
+
+}
+
+/* secret message */
+
+document.getElementById("secretBtn").onclick=function(){
+
+document.getElementById("secretMsg").style.display="block"
+
+}
+
+/* slideshow */
+
+let slideIndex=0
+showSlide(slideIndex)
+
+function showSlide(n){
+
+let slides=document.getElementsByClassName("slide")
+
+if(n>=slides.length) slideIndex=0
+if(n<0) slideIndex=slides.length-1
+
+for(let s of slides){
+s.style.display="none"
+}
+
+slides[slideIndex].style.display="block"
+
+}
+
+function nextSlide(){
+
+slideIndex++
+showSlide(slideIndex)
+
+}
+
+function prevSlide(){
+
+slideIndex--
+showSlide(slideIndex)
 
 }
 
