@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Ishi Sweet 16 🎀</title>
 
 <style>
@@ -18,24 +19,25 @@ min-height:100vh;
 overflow-x:hidden;
 }
 
-/* main card */
+/* card */
 
 .container{
 background:rgba(255,255,255,0.85);
 backdrop-filter:blur(12px);
 padding:40px;
 border-radius:25px;
-max-width:900px;
+max-width:700px;
 text-align:center;
 box-shadow:0 20px 50px rgba(0,0,0,0.15);
 }
 
 h1{
 color:#ff3f8e;
-font-size:40px;
+font-size:38px;
+margin-bottom:10px;
 }
 
-/* hearts */
+/* floating hearts */
 
 .heart{
 position:fixed;
@@ -75,44 +77,81 @@ from{transform:translateY(0)}
 to{transform:translateY(-12px)}
 }
 
+/* envelope button */
+
+#envelope{
+margin-top:20px;
+font-size:22px;
+background:linear-gradient(135deg,#ff4da6,#ff1f8e);
+color:white;
+padding:14px 30px;
+border-radius:40px;
+cursor:pointer;
+display:inline-block;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+transition:0.3s;
+}
+
+#envelope:hover{
+transform:scale(1.05);
+}
+
 /* slideshow */
 
 .slideshow{
 display:none;
 margin-top:25px;
 position:relative;
+max-width:550px;
+margin-left:auto;
+margin-right:auto;
 }
+
+/* slide */
 
 .slide{
 display:none;
+padding:18px;
+background:linear-gradient(135deg,#ffe4f2,#ffd1ea);
+border-radius:25px;
+box-shadow:0 15px 35px rgba(0,0,0,0.2);
 }
 
 .slide img{
 width:100%;
-border-radius:20px;
+border-radius:15px;
+border:8px solid white;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
 }
 
 .caption{
-margin-top:10px;
+margin-top:15px;
 font-size:18px;
 color:#ff1493;
+font-weight:bold;
 }
 
 /* arrows */
 
 .arrow{
 position:absolute;
-top:45%;
-font-size:40px;
+top:50%;
+transform:translateY(-50%);
+font-size:36px;
 color:white;
 background:#ff3f8e;
-padding:10px 15px;
+padding:10px 14px;
 cursor:pointer;
 border-radius:50%;
+box-shadow:0 8px 20px rgba(0,0,0,0.3);
 }
 
-.left{left:10px}
-.right{right:10px}
+.arrow:hover{
+background:#ff1493;
+}
+
+.left{left:-20px}
+.right{right:-20px}
 
 /* cake */
 
@@ -139,17 +178,37 @@ animation:fire 1.5s linear forwards;
 
 @keyframes fire{
 0%{transform:scale(0)}
-50%{transform:scale(1.5)}
+50%{transform:scale(1.6)}
 100%{transform:scale(0)}
 }
 
-/* secret */
+/* secret button */
+
+.secretBtn{
+margin-top:25px;
+padding:14px 28px;
+font-size:18px;
+border:none;
+border-radius:40px;
+background:linear-gradient(135deg,#ff4da6,#ff008c);
+color:white;
+cursor:pointer;
+box-shadow:0 10px 20px rgba(0,0,0,0.2);
+transition:0.3s;
+}
+
+.secretBtn:hover{
+transform:scale(1.05);
+}
+
+/* secret message */
 
 .secret{
 display:none;
 margin-top:20px;
-font-size:22px;
+font-size:20px;
 color:#ff1493;
+line-height:1.6;
 }
 
 </style>
@@ -163,7 +222,11 @@ color:#ff1493;
 
 <div class="gift" id="gift">🎁</div>
 
-<button id="secretBtn" style="display:none">Open Secret Message 💌</button>
+<div id="envelope" onclick="openEnvelope()">💌 Open Memories</div>
+
+<button class="secretBtn" id="secretBtn" style="display:none">
+💖 Secret Message
+</button>
 
 <div id="cakeArea" style="display:none">
 <div id="cake">🎂</div>
@@ -171,9 +234,9 @@ color:#ff1493;
 </div>
 
 <div class="secret" id="secretMsg">
-Happy Sweet 16 Ishi! 🎀  
-You are amazing and special 💖  
-May your life be full of happiness and beautiful dreams ✨
+Happy Sweet 16 Ishi 🎀 <br>
+You are amazing and special 💖 <br>
+May your life be full of happiness, dreams and magical moments ✨
 </div>
 
 <div class="slideshow" id="slideshow">
@@ -206,7 +269,7 @@ May your life be full of happiness and beautiful dreams ✨
 
 <script>
 
-/* floating hearts */
+/* hearts */
 
 setInterval(()=>{
 let heart=document.createElement("div")
@@ -228,19 +291,48 @@ document.body.appendChild(b)
 setTimeout(()=>b.remove(),12000)
 },3000)
 
-/* gift open */
+/* envelope */
 
-document.getElementById("gift").onclick=()=>{
+function openEnvelope(){
 
 document.getElementById("slideshow").style.display="block"
 document.getElementById("cakeArea").style.display="block"
 document.getElementById("secretBtn").style.display="inline-block"
-
 startMicBlow()
 
 }
 
-/* microphone blow detection */
+/* slideshow */
+
+let slideIndex=0
+showSlide(slideIndex)
+
+function showSlide(n){
+
+let slides=document.getElementsByClassName("slide")
+
+if(n>=slides.length) slideIndex=0
+if(n<0) slideIndex=slides.length-1
+
+for(let s of slides){
+s.style.display="none"
+}
+
+slides[slideIndex].style.display="block"
+
+}
+
+function nextSlide(){
+slideIndex++
+showSlide(slideIndex)
+}
+
+function prevSlide(){
+slideIndex--
+showSlide(slideIndex)
+}
+
+/* mic blow */
 
 async function startMicBlow(){
 
@@ -278,21 +370,14 @@ detect()
 
 }
 
-/* blow candles */
-
 function blowCandles(){
 
 document.getElementById("cake").innerHTML="🧁"
-
 document.getElementById("blowText").innerHTML="Candles blown! Make a wish ✨"
-
 document.getElementById("birthdaySong").play()
-
 launchFireworks()
 
 }
-
-/* fireworks */
 
 function launchFireworks(){
 
@@ -305,7 +390,6 @@ fire.className="firework"
 fire.innerHTML="🎆"
 
 fire.style.left=Math.random()*100+"vw"
-
 fire.style.top=Math.random()*100+"vh"
 
 document.body.appendChild(fire)
@@ -316,42 +400,12 @@ setTimeout(()=>fire.remove(),1500)
 
 }
 
-/* secret message */
+/* secret */
 
 document.getElementById("secretBtn").onclick=function(){
 
 document.getElementById("secretMsg").style.display="block"
 
-}
-
-/* slideshow */
-
-let slideIndex=0
-showSlide(slideIndex)
-
-function showSlide(n){
-
-let slides=document.getElementsByClassName("slide")
-
-if(n>=slides.length) slideIndex=0
-if(n<0) slideIndex=slides.length-1
-
-for(let s of slides){
-s.style.display="none"
-}
-
-slides[slideIndex].style.display="block"
-
-}
-
-function nextSlide(){
-slideIndex++
-showSlide(slideIndex)
-}
-
-function prevSlide(){
-slideIndex--
-showSlide(slideIndex)
 }
 
 </script>
