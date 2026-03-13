@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ishi Turns 6 🎀</title>
+<title>Ishi Turns 16 🎀</title>
 
 <style>
 
@@ -23,7 +23,7 @@ overflow-x:hidden;
 .heart{
 position:fixed;
 animation:float 8s linear infinite;
-font-size:20px;
+font-size:22px;
 }
 
 @keyframes float{
@@ -36,7 +36,7 @@ font-size:20px;
 
 .container{
 background:rgba(255,255,255,0.85);
-backdrop-filter:blur(10px);
+backdrop-filter:blur(12px);
 padding:40px;
 border-radius:25px;
 max-width:900px;
@@ -60,6 +60,11 @@ font-size:18px;
 border-radius:30px;
 cursor:pointer;
 margin:10px;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.05);
 }
 
 /* gift */
@@ -135,6 +140,8 @@ animation:fall 3s linear forwards;
 to{transform:translateY(110vh) rotate(720deg)}
 }
 
+/* secret message */
+
 .secret{
 display:none;
 margin-top:20px;
@@ -149,7 +156,7 @@ color:#ff1493;
 
 <div class="container">
 
-<h1>Ishi Turns 6 🎂</h1>
+<h1>Ishi Turns 16 🎂</h1>
 
 <div class="gift">🎁</div>
 
@@ -159,9 +166,9 @@ color:#ff1493;
 <div id="cake"></div>
 
 <div class="secret" id="secretMsg">
-Happy 6th Birthday Ishi! 🎀  
-You are the sweetest girl in the world! 💖  
-May your life always be full of happiness and magic ✨
+Happy 16th Birthday Ishi! 🎀  
+You are truly special and amazing 💖  
+May your life always be full of happiness, dreams and beautiful moments ✨
 </div>
 
 <div class="slideshow" id="slideshow">
@@ -173,17 +180,17 @@ May your life always be full of happiness and magic ✨
 
 <div class="slide">
 <img src="photo1.jpg">
-<div class="caption">Your beautiful smile lights up the world ✨</div>
+<div class="caption">Your smile lights up every room ✨</div>
 </div>
 
 <div class="slide">
 <img src="photo2.jpg">
-<div class="caption">A little princess with a big heart 💖</div>
+<div class="caption">Beautiful memories forever 💖</div>
 </div>
 
 <div class="slide">
 <img src="photo3.jpg">
-<div class="caption">Every moment with you is magical 🌸</div>
+<div class="caption">Every moment with you is special 🌸</div>
 </div>
 
 <div class="slide">
@@ -193,27 +200,27 @@ May your life always be full of happiness and magic ✨
 
 <div class="slide">
 <img src="photo5.jpg">
-<div class="caption">You make every day brighter ☀️</div>
+<div class="caption">A heart full of kindness 💗</div>
 </div>
 
 <div class="slide">
 <img src="photo6.jpg">
-<div class="caption">Sweet, kind and wonderful 🌷</div>
+<div class="caption">Sweet memories that last forever 📸</div>
 </div>
 
 <div class="slide">
 <img src="photo7.jpg">
-<div class="caption">A shining little star ⭐</div>
+<div class="caption">A shining star in every way ⭐</div>
 </div>
 
 <div class="slide">
 <img src="photo8.jpg">
-<div class="caption">Joy and love everywhere you go 💕</div>
+<div class="caption">Moments filled with joy 💕</div>
 </div>
 
 <div class="slide">
 <img src="photo9.jpg">
-<div class="caption">So many beautiful memories 📸</div>
+<div class="caption">So many beautiful memories 🌷</div>
 </div>
 
 <div class="slide">
@@ -223,32 +230,32 @@ May your life always be full of happiness and magic ✨
 
 <div class="slide">
 <img src="photo11.jpg">
-<div class="caption">The cutest little angel 👼</div>
+<div class="caption">A beautiful soul inside and out 🌼</div>
 </div>
 
 <div class="slide">
 <img src="photo12.jpg">
-<div class="caption">Your happiness is magical 🌈</div>
+<div class="caption">Dream big and shine bright 🌟</div>
 </div>
 
 <div class="slide">
 <img src="photo13.jpg">
-<div class="caption">Every photo tells a lovely story 💗</div>
+<div class="caption">Every photo tells a story 💫</div>
 </div>
 
 <div class="slide">
 <img src="photo14.jpg">
-<div class="caption">Bright like a beautiful flower 🌺</div>
+<div class="caption">Moments we will never forget 🌺</div>
 </div>
 
 <div class="slide">
 <img src="photo15.jpg">
-<div class="caption">Little moments, big memories 🎀</div>
+<div class="caption">Life is brighter with you 🎀</div>
 </div>
 
 <div class="slide">
 <img src="photo16.jpg">
-<div class="caption">Happy 6th Birthday Ishi 🎂</div>
+<div class="caption">Happy Sweet 16 Ishi 🎂</div>
 </div>
 
 </div>
@@ -257,7 +264,7 @@ May your life always be full of happiness and magic ✨
 
 <script>
 
-/* hearts */
+/* floating hearts */
 
 setInterval(()=>{
 let heart=document.createElement("div")
@@ -291,7 +298,7 @@ setTimeout(()=>conf.remove(),3000)
 
 }
 
-/* cake */
+/* cake interaction */
 
 document.getElementById("cake").onclick=function(){
 
@@ -299,7 +306,7 @@ this.innerHTML="🧁 Candles blown! Make a wish ✨"
 
 }
 
-/* secret */
+/* secret message */
 
 document.getElementById("secretBtn").onclick=function(){
 
