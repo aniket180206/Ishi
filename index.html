@@ -36,7 +36,7 @@ animation:float 8s linear infinite;
 
 .balloon{
 position:fixed;
-font-size:30px;
+font-size:28px;
 animation:balloon 12s linear infinite;
 }
 
@@ -45,25 +45,11 @@ animation:balloon 12s linear infinite;
 100%{transform:translateY(-10vh)}
 }
 
-/* sparkle particles */
-
-.sparkle{
-position:fixed;
-font-size:14px;
-animation:spark 3s linear infinite;
-}
-
-@keyframes spark{
-0%{opacity:0}
-50%{opacity:1}
-100%{opacity:0}
-}
-
-/* main card */
+/* card */
 
 .container{
 background:rgba(255,255,255,0.85);
-backdrop-filter:blur(12px);
+backdrop-filter:blur(10px);
 padding:40px;
 border-radius:25px;
 max-width:900px;
@@ -87,11 +73,6 @@ font-size:18px;
 border-radius:30px;
 cursor:pointer;
 margin:10px;
-transition:0.3s;
-}
-
-button:hover{
-transform:scale(1.08);
 }
 
 /* gift */
@@ -168,13 +149,23 @@ animation:fall 3s linear forwards;
 to{transform:translateY(110vh) rotate(720deg)}
 }
 
-/* secret message */
+/* secret */
 
 .secret{
 display:none;
 margin-top:20px;
 font-size:22px;
 color:#ff1493;
+}
+
+/* lyrics */
+
+.lyrics{
+display:none;
+margin-top:20px;
+font-size:18px;
+color:#444;
+line-height:1.6;
 }
 
 </style>
@@ -194,16 +185,35 @@ color:#ff1493;
 
 <div class="secret" id="secretMsg">
 Happy Sweet 16 Ishi! 🎀  
-You are kind, beautiful and amazing 💖  
+You are amazing, kind and beautiful 💖  
 May all your dreams come true ✨
+</div>
+
+<div class="lyrics" id="lyrics">
+
+🎵 Birthday Song for Ishi 🎵
+
+Happy birthday dear Ishi,  
+Today you turn sixteen.  
+May your days be full of laughter,  
+And your dreams always be seen.  
+
+Shine bright like the stars above,  
+Smile like the morning sun,  
+May your life be full of magic,  
+Adventure, joy and fun.  
+
+Happy birthday dear Ishi,  
+May happiness always stay,  
+With love and beautiful memories  
+On this very special day. 🎀
+
 </div>
 
 <div class="slideshow" id="slideshow">
 
 <div class="arrow left" onclick="prevSlide()">❮</div>
 <div class="arrow right" onclick="nextSlide()">❯</div>
-
-<!-- 16 PHOTOS -->
 
 <div class="slide"><img src="photo1.jpg"><div class="caption">Your smile lights up the world ✨</div></div>
 <div class="slide"><img src="photo2.jpg"><div class="caption">Beautiful memories forever 💖</div></div>
@@ -225,6 +235,11 @@ May all your dreams come true ✨
 </div>
 
 </div>
+
+<!-- music -->
+<audio id="birthdaySong">
+<source src="https://orangefreesounds.com/wp-content/uploads/2016/08/happy-birthday-instrumental.mp3" type="audio/mpeg">
+</audio>
 
 <script>
 
@@ -250,21 +265,11 @@ document.body.appendChild(b)
 setTimeout(()=>b.remove(),12000)
 },3000)
 
-/* sparkles */
-
-setInterval(()=>{
-let s=document.createElement("div")
-s.className="sparkle"
-s.innerHTML="✨"
-s.style.left=Math.random()*100+"vw"
-s.style.top=Math.random()*100+"vh"
-document.body.appendChild(s)
-setTimeout(()=>s.remove(),3000)
-},500)
-
-/* gift open */
+/* gift */
 
 document.getElementById("gift").onclick=()=>{
+
+document.getElementById("birthdaySong").play()
 
 document.getElementById("slideshow").style.display="block"
 document.getElementById("cake").innerHTML="🎂 Click cake to blow candles"
@@ -282,9 +287,6 @@ setTimeout(()=>c.remove(),3000)
 
 }
 
-let audio=new Audio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3")
-audio.play()
-
 }
 
 /* cake */
@@ -292,6 +294,7 @@ audio.play()
 document.getElementById("cake").onclick=function(){
 
 this.innerHTML="🧁 Candles blown! Make a wish ✨"
+document.getElementById("lyrics").style.display="block"
 
 }
 
