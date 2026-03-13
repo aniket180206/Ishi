@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ishi Turns 16 🎀</title>
+<title>Ishi Sweet 16 🎀</title>
 
 <style>
 
@@ -23,7 +23,7 @@ overflow-x:hidden;
 .heart{
 position:fixed;
 font-size:22px;
-animation:float 7s linear infinite;
+animation:float 8s linear infinite;
 }
 
 @keyframes float{
@@ -45,11 +45,25 @@ animation:balloon 12s linear infinite;
 100%{transform:translateY(-10vh)}
 }
 
+/* sparkle particles */
+
+.sparkle{
+position:fixed;
+font-size:14px;
+animation:spark 3s linear infinite;
+}
+
+@keyframes spark{
+0%{opacity:0}
+50%{opacity:1}
+100%{opacity:0}
+}
+
 /* main card */
 
 .container{
 background:rgba(255,255,255,0.85);
-backdrop-filter:blur(10px);
+backdrop-filter:blur(12px);
 padding:40px;
 border-radius:25px;
 max-width:900px;
@@ -59,7 +73,7 @@ box-shadow:0 20px 50px rgba(0,0,0,0.15);
 
 h1{
 color:#ff3f8e;
-font-size:38px;
+font-size:40px;
 }
 
 /* buttons */
@@ -77,20 +91,20 @@ transition:0.3s;
 }
 
 button:hover{
-transform:scale(1.05);
+transform:scale(1.08);
 }
 
 /* gift */
 
 .gift{
-font-size:70px;
-animation:bounce 1s infinite alternate;
+font-size:80px;
 cursor:pointer;
+animation:bounce 1s infinite alternate;
 }
 
 @keyframes bounce{
 from{transform:translateY(0)}
-to{transform:translateY(-10px)}
+to{transform:translateY(-12px)}
 }
 
 /* slideshow */
@@ -99,7 +113,6 @@ to{transform:translateY(-10px)}
 display:none;
 margin-top:25px;
 position:relative;
-overflow:hidden;
 }
 
 .slide{
@@ -136,7 +149,7 @@ border-radius:50%;
 /* cake */
 
 #cake{
-font-size:80px;
+font-size:90px;
 margin-top:20px;
 cursor:pointer;
 }
@@ -155,7 +168,7 @@ animation:fall 3s linear forwards;
 to{transform:translateY(110vh) rotate(720deg)}
 }
 
-/* secret */
+/* secret message */
 
 .secret{
 display:none;
@@ -171,7 +184,7 @@ color:#ff1493;
 
 <div class="container">
 
-<h1>Ishi Turns 16 🎂</h1>
+<h1>Ishi Sweet 16 🎂</h1>
 
 <div class="gift" id="gift">🎁</div>
 
@@ -181,7 +194,7 @@ color:#ff1493;
 
 <div class="secret" id="secretMsg">
 Happy Sweet 16 Ishi! 🎀  
-You are amazing, kind and beautiful 💖  
+You are kind, beautiful and amazing 💖  
 May all your dreams come true ✨
 </div>
 
@@ -192,85 +205,22 @@ May all your dreams come true ✨
 
 <!-- 16 PHOTOS -->
 
-<div class="slide">
-<img src="photo1.jpg">
-<div class="caption">Your smile lights up the world ✨</div>
-</div>
-
-<div class="slide">
-<img src="photo2.jpg">
-<div class="caption">Beautiful memories forever 💖</div>
-</div>
-
-<div class="slide">
-<img src="photo3.jpg">
-<div class="caption">Every moment with you is magical 🌸</div>
-</div>
-
-<div class="slide">
-<img src="photo4.jpg">
-<div class="caption">Your laughter is happiness 🎈</div>
-</div>
-
-<div class="slide">
-<img src="photo5.jpg">
-<div class="caption">A heart full of kindness 💗</div>
-</div>
-
-<div class="slide">
-<img src="photo6.jpg">
-<div class="caption">Sweet memories forever 📸</div>
-</div>
-
-<div class="slide">
-<img src="photo7.jpg">
-<div class="caption">A shining star ⭐</div>
-</div>
-
-<div class="slide">
-<img src="photo8.jpg">
-<div class="caption">Moments full of joy 💕</div>
-</div>
-
-<div class="slide">
-<img src="photo9.jpg">
-<div class="caption">Beautiful memories 🌷</div>
-</div>
-
-<div class="slide">
-<img src="photo10.jpg">
-<div class="caption">Your smile is priceless 💎</div>
-</div>
-
-<div class="slide">
-<img src="photo11.jpg">
-<div class="caption">A beautiful soul 🌼</div>
-</div>
-
-<div class="slide">
-<img src="photo12.jpg">
-<div class="caption">Dream big and shine bright 🌟</div>
-</div>
-
-<div class="slide">
-<img src="photo13.jpg">
-<div class="caption">Memories that last forever 💫</div>
-</div>
-
-<div class="slide">
-<img src="photo14.jpg">
-<div class="caption">Moments we love 🌺</div>
-</div>
-
-<div class="slide">
-<img src="photo15.jpg">
-<div class="caption">Life is brighter with you 🎀</div>
-</div>
-
-<div class="slide">
-<img src="photo16.jpg">
-<div class="caption">Happy Sweet 16 Ishi 🎂</div>
-</div>
+<div class="slide"><img src="photo1.jpg"><div class="caption">Your smile lights up the world ✨</div></div>
+<div class="slide"><img src="photo2.jpg"><div class="caption">Beautiful memories forever 💖</div></div>
+<div class="slide"><img src="photo3.jpg"><div class="caption">Every moment with you is magical 🌸</div></div>
+<div class="slide"><img src="photo4.jpg"><div class="caption">Your laughter is happiness 🎈</div></div>
+<div class="slide"><img src="photo5.jpg"><div class="caption">A heart full of kindness 💗</div></div>
+<div class="slide"><img src="photo6.jpg"><div class="caption">Sweet memories forever 📸</div></div>
+<div class="slide"><img src="photo7.jpg"><div class="caption">A shining star ⭐</div></div>
+<div class="slide"><img src="photo8.jpg"><div class="caption">Moments full of joy 💕</div></div>
+<div class="slide"><img src="photo9.jpg"><div class="caption">Beautiful memories 🌷</div></div>
+<div class="slide"><img src="photo10.jpg"><div class="caption">Your smile is priceless 💎</div></div>
+<div class="slide"><img src="photo11.jpg"><div class="caption">A beautiful soul 🌼</div></div>
+<div class="slide"><img src="photo12.jpg"><div class="caption">Dream big and shine bright 🌟</div></div>
+<div class="slide"><img src="photo13.jpg"><div class="caption">Memories that last forever 💫</div></div>
+<div class="slide"><img src="photo14.jpg"><div class="caption">Moments we love 🌺</div></div>
+<div class="slide"><img src="photo15.jpg"><div class="caption">Life is brighter with you 🎀</div></div>
+<div class="slide"><img src="photo16.jpg"><div class="caption">Happy Sweet 16 Ishi 🎂</div></div>
 
 </div>
 
@@ -286,32 +236,41 @@ heart.className="heart"
 heart.innerHTML="💖"
 heart.style.left=Math.random()*100+"vw"
 document.body.appendChild(heart)
-setTimeout(()=>heart.remove(),7000)
+setTimeout(()=>heart.remove(),8000)
 },400)
 
 /* balloons */
 
 setInterval(()=>{
-let balloon=document.createElement("div")
-balloon.className="balloon"
-balloon.innerHTML="🎈"
-balloon.style.left=Math.random()*100+"vw"
-document.body.appendChild(balloon)
-setTimeout(()=>balloon.remove(),12000)
+let b=document.createElement("div")
+b.className="balloon"
+b.innerHTML="🎈"
+b.style.left=Math.random()*100+"vw"
+document.body.appendChild(b)
+setTimeout(()=>b.remove(),12000)
 },3000)
+
+/* sparkles */
+
+setInterval(()=>{
+let s=document.createElement("div")
+s.className="sparkle"
+s.innerHTML="✨"
+s.style.left=Math.random()*100+"vw"
+s.style.top=Math.random()*100+"vh"
+document.body.appendChild(s)
+setTimeout(()=>s.remove(),3000)
+},500)
 
 /* gift open */
 
 document.getElementById("gift").onclick=()=>{
 
-document.getElementById("gift").innerHTML="🎁✨"
 document.getElementById("slideshow").style.display="block"
 document.getElementById("cake").innerHTML="🎂 Click cake to blow candles"
 document.getElementById("secretBtn").style.display="inline-block"
 
-/* confetti */
-
-for(let i=0;i<180;i++){
+for(let i=0;i<200;i++){
 
 let c=document.createElement("div")
 c.className="confetti"
@@ -322,8 +281,6 @@ document.body.appendChild(c)
 setTimeout(()=>c.remove(),3000)
 
 }
-
-/* music */
 
 let audio=new Audio("https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3")
 audio.play()
