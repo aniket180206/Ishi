@@ -19,13 +19,12 @@ overflow-x:hidden;
 }
 
 .container{
-background:rgba(255,255,255,0.85);
-backdrop-filter:blur(12px);
+background:rgba(255,255,255,0.9);
 padding:40px;
 border-radius:25px;
-max-width:700px;
+max-width:720px;
 text-align:center;
-box-shadow:0 20px 50px rgba(0,0,0,0.15);
+box-shadow:0 20px 50px rgba(0,0,0,0.2);
 }
 
 h1{
@@ -33,38 +32,44 @@ color:#ff3f8e;
 font-size:38px;
 }
 
-.timer{
+/* countdown */
+
+.countdown{
+display:flex;
+justify-content:center;
+gap:20px;
+margin:20px 0;
+flex-wrap:wrap;
+}
+
+.time-box{
+background:linear-gradient(135deg,#ff4da6,#ff1f8e);
+color:white;
+width:90px;
+height:90px;
+border-radius:20px;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+box-shadow:0 10px 25px rgba(0,0,0,0.25);
+animation:pulse 2s infinite;
+}
+
+.time-box span{
 font-size:26px;
-color:#ff1493;
 font-weight:bold;
-margin-bottom:20px;
 }
 
-/* floating hearts */
-
-.heart{
-position:fixed;
-font-size:22px;
-animation:float 8s linear infinite;
+.time-box p{
+margin:0;
+font-size:12px;
 }
 
-@keyframes float{
-0%{transform:translateY(100vh);opacity:0}
-50%{opacity:1}
-100%{transform:translateY(-10vh);opacity:0}
-}
-
-/* balloons */
-
-.balloon{
-position:fixed;
-font-size:28px;
-animation:balloon 12s linear infinite;
-}
-
-@keyframes balloon{
-0%{transform:translateY(100vh)}
-100%{transform:translateY(-10vh)}
+@keyframes pulse{
+0%{transform:scale(1)}
+50%{transform:scale(1.08)}
+100%{transform:scale(1)}
 }
 
 /* envelope */
@@ -79,11 +84,13 @@ border-radius:40px;
 cursor:pointer;
 display:inline-block;
 box-shadow:0 10px 25px rgba(0,0,0,0.2);
-transition:0.3s;
+opacity:0.5;
+pointer-events:none;
 }
 
-#envelope:hover{
-transform:scale(1.05);
+#envelope.enabled{
+opacity:1;
+pointer-events:auto;
 }
 
 /* slideshow */
@@ -93,8 +100,7 @@ display:none;
 margin-top:25px;
 position:relative;
 max-width:550px;
-margin-left:auto;
-margin-right:auto;
+margin:auto;
 }
 
 .slide{
@@ -109,15 +115,16 @@ box-shadow:0 15px 35px rgba(0,0,0,0.2);
 width:100%;
 border-radius:15px;
 border:8px solid white;
-box-shadow:0 10px 25px rgba(0,0,0,0.2);
 }
 
 .caption{
-margin-top:15px;
+margin-top:10px;
 font-size:18px;
 color:#ff1493;
 font-weight:bold;
 }
+
+/* arrows */
 
 .arrow{
 position:absolute;
@@ -149,7 +156,7 @@ font-size:18px;
 /* secret */
 
 .secretBtn{
-margin-top:25px;
+margin-top:20px;
 padding:14px 28px;
 font-size:18px;
 border:none;
@@ -165,6 +172,35 @@ margin-top:20px;
 font-size:20px;
 color:#ff1493;
 }
+
+/* hearts */
+
+.heart{
+position:fixed;
+font-size:22px;
+animation:float 8s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(100vh);opacity:0}
+50%{opacity:1}
+100%{transform:translateY(-10vh);opacity:0}
+}
+
+/* balloons */
+
+.balloon{
+position:fixed;
+font-size:28px;
+animation:balloon 12s linear infinite;
+}
+
+@keyframes balloon{
+0%{transform:translateY(100vh)}
+100%{transform:translateY(-10vh)}
+}
+
+/* fireworks */
 
 .firework{
 position:fixed;
@@ -187,9 +223,16 @@ animation:fire 1.5s linear forwards;
 
 <h1>Ishi Sweet 16 🎂</h1>
 
-<div class="timer" id="timer"></div>
+<div class="countdown">
 
-<div id="envelope" onclick="openEnvelope()">💌 Open Memories</div>
+<div class="time-box"><span id="days">00</span><p>Days</p></div>
+<div class="time-box"><span id="hours">00</span><p>Hours</p></div>
+<div class="time-box"><span id="minutes">00</span><p>Minutes</p></div>
+<div class="time-box"><span id="seconds">00</span><p>Seconds</p></div>
+
+</div>
+
+<div id="envelope">💌 Open Memories</div>
 
 <button class="secretBtn" id="secretBtn" style="display:none">
 💖 Secret Message
@@ -238,116 +281,106 @@ May your life be full of happiness and magical memories ✨
 
 /* countdown */
 
-const birthday = new Date("March 22, 2026 00:00:00").getTime()
+const birthday = new Date("March 22, 2026 00:00:00").getTime();
+const envelope = document.getElementById("envelope");
 
 setInterval(function(){
 
-let now = new Date().getTime()
-let distance = birthday - now
+let now = new Date().getTime();
+let distance = birthday - now;
 
-let d = Math.floor(distance/(1000*60*60*24))
-let h = Math.floor((distance%(1000*60*60*24))/(1000*60*60))
-let m = Math.floor((distance%(1000*60*60))/(1000*60))
-let s = Math.floor((distance%(1000*60))/1000)
+let d = Math.floor(distance/(1000*60*60*24));
+let h = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+let m = Math.floor((distance%(1000*60*60))/(1000*60));
+let s = Math.floor((distance%(1000*60))/1000);
 
-document.getElementById("timer").innerHTML =
-d+"d "+h+"h "+m+"m "+s+"s"
+document.getElementById("days").innerHTML=d;
+document.getElementById("hours").innerHTML=h;
+document.getElementById("minutes").innerHTML=m;
+document.getElementById("seconds").innerHTML=s;
 
-},1000)
-
-/* hearts */
-
-setInterval(()=>{
-let heart=document.createElement("div")
-heart.className="heart"
-heart.innerHTML="💖"
-heart.style.left=Math.random()*100+"vw"
-document.body.appendChild(heart)
-setTimeout(()=>heart.remove(),8000)
-},400)
-
-/* balloons */
-
-setInterval(()=>{
-let b=document.createElement("div")
-b.className="balloon"
-b.innerHTML="🎈"
-b.style.left=Math.random()*100+"vw"
-document.body.appendChild(b)
-setTimeout(()=>b.remove(),12000)
-},3000)
-
-function openEnvelope(){
-document.getElementById("slideshow").style.display="block"
-document.getElementById("cakeArea").style.display="block"
-document.getElementById("secretBtn").style.display="inline-block"
-startMicBlow()
+if(distance<=0){
+envelope.classList.add("enabled");
 }
+
+},1000);
 
 /* slideshow */
 
-let slideIndex=0
-showSlide(slideIndex)
+let slideIndex=0;
 
 function showSlide(n){
-let slides=document.getElementsByClassName("slide")
 
-if(n>=slides.length) slideIndex=0
-if(n<0) slideIndex=slides.length-1
+let slides=document.getElementsByClassName("slide");
 
-for(let s of slides){
-s.style.display="none"
+if(n>=slides.length) slideIndex=0;
+if(n<0) slideIndex=slides.length-1;
+
+for(let s of slides){s.style.display="none";}
+
+slides[slideIndex].style.display="block";
 }
 
-slides[slideIndex].style.display="block"
+showSlide(slideIndex);
+
+function nextSlide(){slideIndex++;showSlide(slideIndex);}
+function prevSlide(){slideIndex--;showSlide(slideIndex);}
+
+/* open memories */
+
+envelope.onclick=function(){
+
+if(!envelope.classList.contains("enabled")) return;
+
+document.getElementById("slideshow").style.display="block";
+document.getElementById("cakeArea").style.display="block";
+document.getElementById("secretBtn").style.display="inline-block";
+
+startMicBlow();
+
 }
 
-function nextSlide(){slideIndex++;showSlide(slideIndex)}
-function prevSlide(){slideIndex--;showSlide(slideIndex)}
-
-/* microphone blow */
+/* mic blow */
 
 async function startMicBlow(){
 
-const stream = await navigator.mediaDevices.getUserMedia({audio:true})
+const stream = await navigator.mediaDevices.getUserMedia({audio:true});
+const audioContext = new AudioContext();
+const mic = audioContext.createMediaStreamSource(stream);
+const analyser = audioContext.createAnalyser();
 
-const audioContext = new AudioContext()
+mic.connect(analyser);
 
-const mic = audioContext.createMediaStreamSource(stream)
-
-const analyser = audioContext.createAnalyser()
-
-mic.connect(analyser)
-
-const data = new Uint8Array(analyser.frequencyBinCount)
+const data = new Uint8Array(analyser.frequencyBinCount);
 
 function detect(){
 
-analyser.getByteFrequencyData(data)
+analyser.getByteFrequencyData(data);
 
-let volume = data.reduce((a,b)=>a+b)/data.length
+let volume = data.reduce((a,b)=>a+b)/data.length;
 
-if(volume > 60){
+if(volume>60){
 
-blowCandles()
-
-stream.getTracks().forEach(track => track.stop())
-
-}
-
-requestAnimationFrame(detect)
+blowCandles();
+stream.getTracks().forEach(track => track.stop());
 
 }
 
-detect()
+requestAnimationFrame(detect);
+
+}
+
+detect();
 }
 
 function blowCandles(){
 
-document.getElementById("cake").innerHTML="🧁"
-document.getElementById("blowText").innerHTML="Candles blown! Make a wish ✨"
-document.getElementById("birthdaySong").play()
-launchFireworks()
+document.getElementById("cake").innerHTML="🧁";
+document.getElementById("blowText").innerHTML="Candles blown! Make a wish ✨";
+
+document.getElementById("birthdaySong").play();
+
+launchFireworks();
 
 }
 
@@ -355,23 +388,47 @@ function launchFireworks(){
 
 for(let i=0;i<20;i++){
 
-let fire=document.createElement("div")
-fire.className="firework"
-fire.innerHTML="🎆"
-fire.style.left=Math.random()*100+"vw"
-fire.style.top=Math.random()*100+"vh"
+let fire=document.createElement("div");
 
-document.body.appendChild(fire)
+fire.className="firework";
+fire.innerHTML="🎆";
 
-setTimeout(()=>fire.remove(),1500)
+fire.style.left=Math.random()*100+"vw";
+fire.style.top=Math.random()*100+"vh";
+
+document.body.appendChild(fire);
+
+setTimeout(()=>fire.remove(),1500);
 
 }
 
 }
 
 document.getElementById("secretBtn").onclick=function(){
-document.getElementById("secretMsg").style.display="block"
+document.getElementById("secretMsg").style.display="block";
 }
+
+/* hearts */
+
+setInterval(()=>{
+let heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="💖";
+heart.style.left=Math.random()*100+"vw";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),8000);
+},400);
+
+/* balloons */
+
+setInterval(()=>{
+let b=document.createElement("div");
+b.className="balloon";
+b.innerHTML="🎈";
+b.style.left=Math.random()*100+"vw";
+document.body.appendChild(b);
+setTimeout(()=>b.remove(),12000);
+},3000);
 
 </script>
 
